@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎮 Vestigial or Vital?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+      background: white;
+      margin: 40px auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #1f2937;
+    }
+
+    .question {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .question.active {
+      display: flex;
+    }
+
+    .structure-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #3b82f6;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    .result {
+      font-size: 18px;
+      margin-top: 15px;
+      color: #374151;
+    }
+
+    .answer-summary {
+      margin-top: 20px;
+    }
+
+    .answer-item {
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #f3f4f6;
+      border-radius: 8px;
+    }
+
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+
+    .incorrect {
+      color: red;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 Vestigial or Vital?</h1>
+
+    <div class="question active" id="q0">
+      <div class="structure-title">Appendix</div>
+      <img src="https://i.imgur.com/cGuLDob.jpg" alt="Appendix">
+      <p>Is this structure Vestigial or Vital?</p>
+      <button onclick="nextQuestion(0, 'Vestigial')">Vestigial</button>
+      <button onclick="nextQuestion(0, 'Vital')">Vital</button>
+    </div>
+
+    <div class="question" id="q1">
+      <div class="structure-title">Pancreas</div>
+      <img src="https://i.imgur.com/hmsiVLD.jpg" alt="Pancreas">
+      <p>Is this structure Vestigial or Vital?</p>
+      <button onclick="nextQuestion(1, 'Vestigial')">Vestigial</button>
+      <button onclick="nextQuestion(1, 'Vital')">Vital</button>
+    </div>
+
+    <div class="question" id="q2">
+      <div class="structure-title">Thymus</div>
+      <img src="https://i.imgur.com/MwSwQuL.jpg" alt="Thymus">
+      <p>Is this structure Vestigial or Vital?</p>
+      <button onclick="nextQuestion(2, 'Vestigial')">Vestigial</button>
+      <button onclick="nextQuestion(2, 'Vital')">Vital</button>
+    </div>
+
+    <div class="question" id="q3">
+      <div class="structure-title">Spleen</div>
+      <img src="https://i.imgur.com/8xR8LrB.jpg" alt="Spleen">
+      <p>Is this structure Vestigial or Vital?</p>
+      <button onclick="nextQuestion(3, 'Vestigial')">Vestigial</button>
+      <button onclick="nextQuestion(3, 'Vital')">Vital</button>
+    </div>
+
+    <div class="question" id="q4">
+      <div class="structure-title">Third Eyelid (Nictitating Membrane)</div>
+      <img src="https://i.imgur.com/gqSQ6Ji.jpg" alt="Third Eyelid">
+      <p>Is this structure Vestigial or Vital?</p>
+      <button onclick="nextQuestion(4, 'Vestigial')">Vestigial</button>
+      <button onclick="nextQuestion(4, 'Vital')">Vital</button>
+    </div>
+
+    <div class="question" id="q5">
+      <div class="structure-title">Coccyx (Tailbone)</div>
+      <img src="https://i.imgur.com/iinwL5i.jpg" alt="Tailbone">
+      <p>Is this structure Vestigial or Vital?</p>
+      <button onclick="nextQuestion(5, 'Vestigial')">Vestigial</button>
+      <button onclick="nextQuestion(5, 'Vital')">Vital</button>
+    </div>
+
+    <div class="question" id="q6">
+      <div class="structure-title">Ear Muscles</div>
+      <img src="https://i.imgur.com/abBkqGZ.jpg" alt="Ear Muscles">
+      <p>Is this structure Vestigial or Vital?</p>
+      <button onclick="nextQuestion(6, 'Vestigial')">Vestigial</button>
+      <button onclick="nextQuestion(6, 'Vital')">Vital</button>
+    </div>
+
+    <div class="question" id="q7">
+      <div class="structure-title">Wisdom Teeth</div>
+      <img src="https://i.imgur.com/qEqWEh5.jpg" alt="Wisdom Teeth">
+      <p>Is this structure Vestigial or Vital?</p>
+      <button onclick="nextQuestion(7, 'Vestigial')">Vestigial</button>
+      <button onclick="nextQuestion(7, 'Vital')">Vital</button>
+    </div>
+
+    <div class="question" id="q8">
+      <h2>🎉 You're done!</h2>
+      <p class="result">Here’s how you did:</p>
+      <div class="answer-summary" id="answerSummary"></div>
+    </div>
+  </div>
+
+  <script>
+    const correctAnswers = [
+      "Vestigial", // Appendix
+      "Vital",     // Pancreas
+      "Vital",     // Thymus
+      "Vital",     // Spleen
+      "Vestigial", // Third Eyelid
+      "Vestigial", // Tailbone
+      "Vestigial", // Ear Muscles
+      "Vestigial"  // Wisdom Teeth
+    ];
+
+    const explanations = [
+      "Appendix: Vestigial – Once used to digest cellulose in herbivorous ancestors, now minor immune role.",
+      "Pancreas: Vital – Regulates blood sugar and produces digestive enzymes.",
+      "Thymus: Vital – Essential for immune system development in early life (T-cell maturation).",
+      "Spleen: Vital – Filters blood and supports immune function.",
+      "Third Eyelid: Vestigial – Non-functional in humans, but fully functional in birds and reptiles.",
+      "Tailbone: Vestigial – Remnant of a tail from our ancestors; minimal modern function.",
+      "Ear Muscles: Vestigial – Once moved ears to detect sound; now mostly unused.",
+      "Wisdom Teeth: Vestigial – Helped chew tough food in the past; often removed today."
+    ];
+
+    const userAnswers = [];
+
+    function nextQuestion(index, answer) {
+      userAnswers[index] = answer;
+      document.getElementById("q" + index).classList.remove("active");
+      const next = document.getElementById("q" + (index + 1));
+      if (next) {
+        next.classList.add("active");
+      }
+
+      if (index === 7) {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const summary = document.getElementById("answerSummary");
+      summary.innerHTML = '';
+
+      for (let i = 0; i < userAnswers.length; i++) {
+        const div = document.createElement("div");
+        div.className = "answer-item";
+
+        if (userAnswers[i] === correctAnswers[i]) {
+          div.innerHTML = `<span class="correct">✅ Correct:</span> ${explanations[i]}`;
+        } else {
+          div.innerHTML = `<span class="incorrect">❌ Incorrect:</span> You answered <strong>${userAnswers[i]}</strong>. ${explanations[i]}`;
+        }
+
+        summary.appendChild(div);
+      }
+    }
+  </script>
+
+
+</body></html>
